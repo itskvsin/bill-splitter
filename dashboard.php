@@ -25,6 +25,11 @@
     </div>
 
     <form method="post" class="form">
+
+        <div class="billTitle">
+            <input type="text" name="billTitle" id="billTitle" placeholder="Bill Title: ">
+        </div>
+
         <div class="paidByWhom">
             <p>Paid By Whom:</p>
             <input type="text" name="personPaid" id="personPaid" placeholder="Enter Name Of Person:">
