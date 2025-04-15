@@ -1,7 +1,7 @@
-document.querySelector('form').addEventListener('submit', function(e) {
+document.getElementById('generatePersons').addEventListener('click', function(e) {
     const num = document.getElementById('personNum').value;
     const container = document.querySelector('.persons');
-    container.innerHTML = ''; // Clear previous inputs
+    container.innerHTML = ''; 
 
     for (let i = 0; i < num; i++) {
         const personDiv = document.createElement('div');
@@ -22,6 +22,4 @@ document.querySelector('form').addEventListener('submit', function(e) {
         personDiv.appendChild(amountInput);
         container.appendChild(personDiv);
     }
-
-    e.preventDefault();
 });

@@ -1,5 +1,5 @@
 document.getElementById('equalSplitButton').addEventListener('click', function(e) {
-    e.preventDefault(); 
+    // e.preventDefault(); 
 
     const numOfPersons = document.getElementById('personNum').value;
     const totalAmount = document.getElementById('amount').value;

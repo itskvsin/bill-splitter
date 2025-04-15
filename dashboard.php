@@ -37,8 +37,8 @@
 
         <div class="splitPersons">
             <div class="personNum">
-                <input type="number" name="personNum" id="personNum" placeholder="Enter number of persons" required>
-                <input type="submit" value="Enter">
+            <input type="number" name="personNum" id="personNum" placeholder="Enter number of persons" required>
+            <button type="button" id="generatePersons">Enter</button>
             </div>
 
             <div class="persons"></div>
@@ -46,7 +46,7 @@
 
         <button type="button" class="equalSplit" id="equalSplitButton">Split Equally</button>
         
-        <input type="submit" value="Submit Bill">
+        <input type="submit" value="Submit Bill" name="submitBill">
     </form>
 
     <script src="./JS/toggle.js"></script>
