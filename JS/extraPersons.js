@@ -9,13 +9,13 @@ document.getElementById('generatePersons').addEventListener('click', function(e)
 
         const contactInput = document.createElement('input');
         contactInput.type = 'text';
-        contactInput.name = `person_contact_${i + 1}`;
+        contactInput.name = `personContact${i + 1}`;
         contactInput.placeholder = `Email or Phone for person ${i + 1}`;
 
         const amountInput = document.createElement('input');
         amountInput.type = 'number';
         amountInput.step = '0.01';
-        amountInput.name = `person_amount_${i + 1}`;
+        amountInput.name = `personAmount${i + 1}`;
         amountInput.placeholder = `₹ Amount`;
 
         personDiv.appendChild(contactInput);
