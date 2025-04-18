@@ -34,8 +34,8 @@
         </div>
 
         <input type="number" name="amount" id="amount" placeholder="Enter Your Amount:" required>
-
-        <div class="splitPersons">
+<!-- Need to also add person name with number/email with the amount -->
+        <div class="splitPersons"> 
             <div class="personNum">
             <input type="number" name="personNum" id="personNum" placeholder="Enter number of persons" required>
             <button type="button" id="generatePersons">Enter</button>
