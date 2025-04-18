@@ -117,25 +117,26 @@ body, html {
 }
 
 
-.person-entry {
+.personEntry{
     display: flex;
-    gap: 5px;
+    padding: 4px;
+    gap: 10px;
 }
 
-.person-entry input[type="number"]{
+.personEntry input[type="number"]{
     width: 30%;
 }
 
-.person-entry input[type="text"],
-.person-entry input[type="number"] {
+.personEntry input[type="text"],
+.personEntry input[type="number"] {
     border: none;
     border-radius: 6px;
     background-color: #444;
     color: white;
 }
 
-.person-entry input[type="text"]::placeholder,
-.person-entry input[type="number"]::placeholder {
+.personEntry input[type="text"]::placeholder,
+.personEntry input[type="number"]::placeholder {
     color: #aaa;
 }
 
