@@ -1,5 +1,6 @@
 <?php
     include 'config.php';
+
     $submitted = false;
     $billtitle = $personpaid = $amount = 0;
     $participants = [];
@@ -17,6 +18,19 @@
             $amt = $_POST['personAmount'.($i)];
             $participants[] = ['name' => $name , 'contact' => $contact , 'amount' => $amt];
         }
+
+        $stmt = $conn->prepare("INSERT INTO bill(title , paid_by , total_amt) VALUES (?,?,?)");
+        $stmt->bind_param('ssd' , $billtitle , $personpaid , $amount);
+        $stmt->execute();
+        $billId = $stmt->insert_id;
+        $stmt->close();
+
+        $stmtP = $conn->prepare("INSERT INTO participants(bill_id , name , contact , amt) VALUES (?,?,?,?) ");
+        foreach ($participants as $p) {
+            $stmtP->bind_param('issd' , $billId , $p['name'] , $p['contact'] , $p['amount']);
+            $stmtP->execute();
+        }
+        $stmtP->close();
     }
 ?> 
 
@@ -80,5 +94,8 @@
         <h2>No data Submitted</h2>
     <?php endif; ?>
 </div>
+<div class="success">
+        <h1>Bill Submmitted Successfully</h1>
+    </div>
 </body>
 </html>
