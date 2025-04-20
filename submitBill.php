@@ -11,14 +11,11 @@
         $amount = $_POST['amount'];
         $num = $_POST['personNum'];
 
-        // echo $_POST['personContact1'];
-        // echo $_POST['personContact2'];
-        // echo $_POST['personAmount2'];
-        // echo $_POST['personAmount2'];
         for ($i=1; $i <= $num; $i++) { 
+            $name = $_POST['personName'.($i)];
             $contact = $_POST['personContact'.($i)];
             $amt = $_POST['personAmount'.($i)];
-            $participants[] = ['contact' => $contact , 'amount' => $amt];
+            $participants[] = ['name' => $name , 'contact' => $contact , 'amount' => $amt];
         }
     }
 ?> 
@@ -72,6 +69,7 @@
         <div class="participantsContainer">
         <?php foreach ($participants as $p): ?>
             <div class="person">
+                <strong>Name : </strong><?= htmlspecialchars($p['name']) ?><br>
                 <strong>Contact : </strong><?= htmlspecialchars($p['contact']) ?><br>
                 <strong>Amount : </strong> ₹<?= htmlspecialchars($p['amount']) ?>
             </div>
