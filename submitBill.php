@@ -94,8 +94,5 @@
         <h2>No data Submitted</h2>
     <?php endif; ?>
 </div>
-<div class="success">
-        <h1>Bill Submmitted Successfully</h1>
-    </div>
 </body>
 </html>
