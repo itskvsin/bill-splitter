@@ -1,0 +1,92 @@
+:root {
+    --backgroundColor: #212121;
+    --textColor: #ffffff;
+    --formBg: #2c2c2c;
+    --buttonBg: #3f51b5;
+    --buttonHover: #303f9f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.divider{
+    height: 2px;
+    width: 100%;
+    background-color: gray;
+    margin:0px 0px 8px 0px;
+}
+
+body{
+    background-color: var(--backgroundColor);
+    color: var(--textColor);
+    margin: auto;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-size: 24px;
+    text-align: end;
+    margin:0 24px 0 0 ;
+}
+
+.navbar a{
+    color: var(--textColor);
+    
+}
+
+.pastBillsContainer{
+    overflow-y: auto;
+}
+
+.billCard{
+    background-color: var(--formBg);
+    margin: 18px auto;
+    padding: 16px;
+    width: 80%;
+    border-radius: 20px;
+}
+
+.billTitle{
+    margin: 0 0 6px 0;
+    font-size: larger;
+}
+
+.personContainer{
+    margin: 0 0 8px 0;
+    font-size: large;
+}
+
+.participantHeading{
+    font-size: 30px;
+}
+
+.participants{
+    width: 100%;
+    border-radius: 10px;
+    font-size: larger;
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 200px;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.participantItem{ 
+    width: 100%;
+    background-color: azure;
+    color: #2c2c2c;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 40px;
+    border-radius: 14px;
+}

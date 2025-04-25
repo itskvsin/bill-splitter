@@ -10,7 +10,7 @@ while ($row = $result->fetch_assoc()) {
     $participants = [];
 
     $stmt = $conn->prepare("SELECT * FROM participants WHERE bill_id = ?");
-    $stmt->bind_param("i", $billId); // "i" means integer
+    $stmt->bind_param("i", $billId);
     $stmt->execute();
     $pResult = $stmt->get_result();
 

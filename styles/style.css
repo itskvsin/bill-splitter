@@ -45,7 +45,7 @@ body, html {
 
 .navbar a {
     color: var(--textColor);
-    margin-right: 20px;
+    margin-right: 16px;
 }
 
 .form {
