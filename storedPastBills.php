@@ -1,29 +1,28 @@
-<?php 
-    include 'config.php';
+<?php
+include 'config.php';
 
-    $bills = [];
+$bills = [];
 
-    $result = $conn->query("SELECT * FROM bill ORDER BY created_at DESC");
+$result = $conn->query("SELECT * FROM bill ORDER BY created_at DESC");
 
-    while($row = $result->fetch_assoc()){
-        $billId = $row['id'];
-        $participants = [];
+while ($row = $result->fetch_assoc()) {
+    $billId = $row['id'];
+    $participants = [];
 
-        $stmt = $conn->prepare("SELECT * FROM participants WHERE bill_id = ?");
-        $stmt->bind_param('i' , $billId);
-        $stmt->execute();
-        $participantsResult = $stmt->get_result();
+    $stmt = $conn->prepare("SELECT * FROM participants WHERE bill_id = ?");
+    $stmt->bind_param("i", $billId); // "i" means integer
+    $stmt->execute();
+    $pResult = $stmt->get_result();
 
-        while($p = $participantsResult->fetch_assoc()){
+
+    if ($pResult && $pResult->num_rows > 0) {
+        while ($p = $pResult->fetch_assoc()) {
             $participants[] = $p;
         }
-
-        $bills[] = [
-            'title' => $row['title'],
-            'paid_by' => $row['paid_by'],
-            'amount' => $row['total_amt'],
-            'created_at' => $row['created_at'],
-            'participants' => $participants
-        ];
     }
+
+    $row['participants'] = $participants;
+    $bill[] = $row;
+
+}
 ?>
