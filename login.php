@@ -19,7 +19,7 @@ include './storedLogin.php';
     <form method="post" class="form">
         <input type="email" name="email" id="email" placeholder="Enter your Email: ">
         <input type="password" name="password" id="password" placeholder="Enter your Password: ">
-        <button type="submit" name="register">Login</button>
+        <button type="submit" name="login">Login</button>
     </form>
     
     <div class="error">

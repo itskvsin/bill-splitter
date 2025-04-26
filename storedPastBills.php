@@ -1,28 +1,43 @@
 <?php
 include 'config.php';
+session_start();
 
 $bills = [];
 
-$result = $conn->query("SELECT * FROM bill ORDER BY created_at DESC");
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
 
-while ($row = $result->fetch_assoc()) {
-    $billId = $row['id'];
-    $participants = [];
-
-    $stmt = $conn->prepare("SELECT * FROM participants WHERE bill_id = ?");
-    $stmt->bind_param("i", $billId);
+    $stmt = $conn->prepare("SELECT * FROM bill WHERE user_id = ? ORDER BY created_at DESC");
+    $stmt->bind_param("i" , $user_id);
     $stmt->execute();
-    $pResult = $stmt->get_result();
+    $result = $stmt->get_result();
 
+    while ($row = $result->fetch_assoc()) {
+        $billId = $row['id'];
 
-    if ($pResult && $pResult->num_rows > 0) {
-        while ($p = $pResult->fetch_assoc()) {
-            $participants[] = $p;
+        $participants = [];
+        $pstmt = $conn->prepare("SELECT * FROM participants WHERE bill_id = ?");
+        $pstmt->bind_param("i" , $billId);
+        $pstmt->execute();
+        $pResult = $pstmt->get_result();
+
+        while ($prow = $pResult->fetch_assoc()) {
+            $participants[] = $prow;
         }
+
+        $row['participants'] = $participants;
+
+        $bills[] = $row;
     }
 
-    $row['participants'] = $participants;
-    $bill[] = $row;
+    if (empty($bills)) {
+        $bill = [];
+    } else {
+        $bill = $bills;
+    }
 
+} else {
+    header("location: ./login.php");
+    exit();
 }
 ?>

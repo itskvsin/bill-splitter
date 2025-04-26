@@ -1,6 +1,6 @@
 <?php 
-include './config.php';
 session_start();
+include './config.php';
 
 if (!isset($_SESSION['username']) || !isset($_SESSION['userEmail'])) {
     if (isset($_COOKIE['username']) && isset($_COOKIE['userEmail'])) {
@@ -11,6 +11,9 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['userEmail'])) {
         exit();
     }
 }
+
+// Always show from SESSION
+$username = $_SESSION['username'];
 ?>
 
 <!DOCTYPE html>

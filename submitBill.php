@@ -1,9 +1,16 @@
 <?php
     include 'config.php';
+    session_start();
 
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: login.php");
+        exit();
+    }
+    
     $submitted = false;
     $billtitle = $personpaid = $amount = 0;
     $participants = [];
+    $userId = $_SESSION['user_id'];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitBill'])) {
         $submitted = true;
@@ -19,8 +26,8 @@
             $participants[] = ['name' => $name , 'contact' => $contact , 'amount' => $amt];
         }
 
-        $stmt = $conn->prepare("INSERT INTO bill(title , paid_by , total_amt) VALUES (?,?,?)");
-        $stmt->bind_param('ssd' , $billtitle , $personpaid , $amount);
+        $stmt = $conn->prepare("INSERT INTO bill(user_id , title , paid_by , total_amt) VALUES (? ,?,?,?)");
+        $stmt->bind_param('issi' , $userId , $billtitle , $personpaid , $amount);
         $stmt->execute();
         $billId = $stmt->insert_id;
         $stmt->close();
