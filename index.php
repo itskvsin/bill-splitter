@@ -1,3 +1,18 @@
+<?php 
+include './config.php';
+session_start();
+
+if (!isset($_SESSION['username']) || !isset($_SESSION['userEmail'])) {
+    if (isset($_COOKIE['username']) && isset($_COOKIE['userEmail'])) {
+        $_SESSION['username'] = $_COOKIE['username'];
+        $_SESSION['userEmail'] = $_COOKIE['userEmail'];
+    } else {
+        header('location: login.php');
+        exit();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +26,9 @@
     <div class="navbar">
         <div class="history">
             <ul>
+                <?php if(isset($_SESSION['username'])) : ?>
+                    <li>Welcome <?= htmlspecialchars($_SESSION['username']) ?>, </li>
+                <?php endif; ?>
                 <a href="./pastBills.php" class="pastBills"><li>Past Bills</li></a>
             </ul>
         </div>
