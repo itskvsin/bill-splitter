@@ -12,6 +12,7 @@
 <body>
     <div class="navbar">
         <h2>Register</h2>
+        <div class="divider"></div>
     </div>
     <form method="post" class="form">
         <input type="text" name="name" id="name" placeholder="Enter the name:" required>
