@@ -14,15 +14,15 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitBill'])) {
         $submitted = true;
-        $billtitle = $_POST['billTitle'];
-        $personpaid = $_POST['personPaid'];
-        $amount = $_POST['amount'];
-        $num = $_POST['personNum'];
+        $billtitle = isset($_POST['billTitle']) ? trim($_POST['billTitle']) : '' ;
+        $personpaid = $_POST['personPaid'] ? trim($_POST['personPaid']) : '' ;
+        $amount = $_POST['amount'] ? floatval($_POST['amount']) : 0 ;
+        $num = $_POST['personNum'] ? intval($_POST['personNum']) : 0;
 
         for ($i=1; $i <= $num; $i++) { 
-            $name = $_POST['personName'.($i)];
-            $contact = $_POST['personContact'.($i)];
-            $amt = $_POST['personAmount'.($i)];
+            $name = isset($_POST['personName'.($i)]) ? trim($_POST['personName'.($i)]) : '';
+            $contact = $_POST['personContact'.($i)] ? trim($_POST['personContact'.($i)]) : '';
+            $amt = $_POST['personAmount'.($i)] ? trim($_POST['personAmount'.($i)]) : 0;
             $participants[] = ['name' => $name , 'contact' => $contact , 'amount' => $amt];
         }
 

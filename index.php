@@ -55,10 +55,10 @@ $username = $_SESSION['username'];
         </div>
 
         <input type="number" name="amount" id="amount" placeholder="Enter Your Amount:" required>
-<!-- Need to also add person name with number/email with the amount -->
+
         <div class="splitPersons"> 
             <div class="personNum">
-            <input type="number" name="personNum" id="personNum" placeholder="Enter number of persons" required>
+            <input type="number" name="personNum" id="personNum" placeholder="Enter number of persons">
             <button type="button" id="generatePersons">Enter</button>
             </div>
 
