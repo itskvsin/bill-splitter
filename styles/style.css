@@ -4,6 +4,8 @@
     --formBg: #2c2c2c;
     --buttonBg: #3f51b5;
     --buttonHover: #303f9f;
+    --inputBg: #383838;
+    --inputTextColor: #ffffff;
 }
 
 [data-theme="light"] {
@@ -12,52 +14,68 @@
     --formBg: #ffffff;
     --buttonBg: #3f51b5;
     --buttonHover: #5c6bc0;
+    --inputBg: #e0e0e0;
+    --inputTextColor: #121212;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    list-style-type: none;
+    list-style: none;
     text-decoration: none;
 }
 
 body, html {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: var(--backgroundColor);
     color: var(--textColor);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    overflow-x: hidden;
 }
 
+/* Navbar */
 .navbar {
-    padding: 20px;
-    font-size: 20px;
-    text-align: right;
-    position: absolute;
-    top: 6px;
-    right: 70px;
+    width: 100%;
+    background: var(--formBg);
+    padding: 15px 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.history {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .navbar a {
     color: var(--textColor);
-    margin-right: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
+.navbar a:hover {
+    color: var(--buttonHover);
+}
+
+.user{
+    font-size: 20px;
+}
+
+/* Form Styling */
 .form {
+    margin: 40px auto;
     background-color: var(--formBg);
-    padding: 30px;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 500px;
+    padding: 40px 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    gap: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .form input[type="text"],
@@ -65,10 +83,11 @@ body, html {
 .form input[type="email"] {
     padding: 14px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     width: 100%;
-    background-color: #444;
-    color: white;
+    background-color: var(--inputBg);
+    color: var(--inputTextColor);
+    font-size: 1rem;
 }
 
 .form input::placeholder {
@@ -80,86 +99,78 @@ body, html {
     background-color: var(--buttonBg);
     color: white;
     padding: 14px;
+    font-size: 1rem;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .form button:hover,
 .form input[type="submit"]:hover {
     background-color: var(--buttonHover);
+    transform: translateY(-2px);
 }
 
-.staticSplit button {
-    margin: 5px;
-    padding: 10px 20px;
-    border: none;
-    background: #555;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
+.form input[name="personNum"]{
+    width: 85%;
+    margin: 0 8px 0 0;
 }
 
-.staticSplit button:hover {
-    background: #777;
+/* Person Split Section */
+.splitPersons {
+    margin-top: 20px;
 }
 
 .persons {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-height: 300px; 
-    overflow-y: auto;  
-    width: 100%;        
-    padding-right: 10px; 
-    margin-top: 10px;
+    gap: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 8px;
 }
 
-
-.personEntry{
+.personEntry {
     display: flex;
-    padding: 4px;
     gap: 10px;
-}
-
-.personEntry input[type="number"]{
-    width: 30%;
+    align-items: center;
 }
 
 .personEntry input[type="text"],
 .personEntry input[type="number"] {
     border: none;
     border-radius: 6px;
-    background-color: #444;
+    background-color: var(--inputBg);
+    color: var(--inputTextColor);
+    padding: 12px;
+    font-size: 1rem;
+}
+
+/* Equal Split Button */
+.equalSplit {
+    background-color: var(--buttonBg);
     color: white;
+    padding: 14px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.personEntry input[type="text"]::placeholder,
-.personEntry input[type="number"]::placeholder {
-    color: #aaa;
+.equalSplit:hover {
+    background-color: var(--buttonHover);
+    transform: translateY(-2px);
 }
 
-.personNum {
-    display: flex;
-    align-items: center;
-}
-
-.personNum input[type='submit'] {
-    margin-left: 4px;
-}
-
-.toggle-container {
-    position: absolute;
-    top: 28px;
-    right: 10px;
-}
-
+/* Light/Dark Toggle Switch */
 .switch {
     position: relative;
     display: inline-block;
     width: 50px;
     height: 25px;
+    margin-left: 20px;
 }
 
 .switch input {
@@ -198,14 +209,4 @@ input:checked + .slider {
 
 input:checked + .slider:before {
     transform: translateX(24px);
-}
-
-.equalSplit{
-    background-color: var(--buttonBg);
-    color: white;
-    padding: 14px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s ease;
 }

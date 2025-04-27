@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include './config.php';
 
@@ -18,6 +18,7 @@ $username = $_SESSION['username'];
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,22 +28,32 @@ $username = $_SESSION['username'];
 
 <body>
     <div class="navbar">
-        <div class="history">
-            <ul>
-                <?php if(isset($_SESSION['username'])) : ?>
+        <div>
+            <ul class="history">
+                <div class="user">
                     <li>Welcome <?= htmlspecialchars($_SESSION['username']) ?>, </li>
-                <?php endif; ?>
-                <a href="./pastBills.php" class="pastBills"><li>Past Bills</li></a>
+                </div>
+
+                <a href="./pastBills.php" class="pastBills">
+                    <li>Past Bills</li>
+                </a>
+                
+                <div class="logOut">
+                    <a href="./logout.php">
+                        <li>Log Out</li>
+                    </a>
+                </div>
+
+                <div class="toggle-container">
+                    <label class="switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
             </ul>
         </div>
     </div>
 
-    <div class="toggle-container">
-        <label class="switch">
-            <input type="checkbox" id="themeToggle">
-            <span class="slider round"></span>
-        </label>
-    </div>
 
     <form method="post" action="submitBill.php" class="form"> <!-- Action set to submitBill.php -->
         <div class="billTitle">
@@ -56,17 +67,17 @@ $username = $_SESSION['username'];
 
         <input type="number" name="amount" id="amount" placeholder="Enter Your Amount:" required>
 
-        <div class="splitPersons"> 
+        <div class="splitPersons">
             <div class="personNum">
-            <input type="number" name="personNum" id="personNum" placeholder="Enter number of persons">
-            <button type="button" id="generatePersons">Enter</button>
+                <input type="number" name="personNum" id="personNum" placeholder="Enter number of persons">
+                <button type="button" id="generatePersons">Enter</button>
             </div>
 
             <div class="persons"></div>
         </div>
 
         <button type="button" class="equalSplit" id="equalSplitButton">Split Equally</button>
-        
+
         <input type="submit" value="Submit Bill" name="submitBill">
     </form>
 
@@ -74,4 +85,5 @@ $username = $_SESSION['username'];
     <script src="./JS/extraPersons.js"></script>
     <script src="./JS/equalSplit.js"></script>
 </body>
+
 </html>
