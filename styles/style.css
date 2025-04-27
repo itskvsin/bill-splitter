@@ -60,7 +60,7 @@ body, html {
     color: var(--buttonHover);
 }
 
-.user{
+.user {
     font-size: 20px;
 }
 
@@ -112,39 +112,48 @@ body, html {
     transform: translateY(-2px);
 }
 
-.form input[name="personNum"]{
+.form input[name="personNum"] {
     width: 85%;
     margin: 0 8px 0 0;
-}
-
-/* Person Split Section */
-.splitPersons {
-    margin-top: 20px;
 }
 
 .persons {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 15px;
     max-height: 300px;
     overflow-y: auto;
     padding-right: 8px;
 }
 
 .personEntry {
+    background-color: var(--formBg);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     display: flex;
+    flex-direction: column;
     gap: 10px;
-    align-items: center;
 }
 
 .personEntry input[type="text"],
 .personEntry input[type="number"] {
-    border: none;
-    border-radius: 6px;
     background-color: var(--inputBg);
     color: var(--inputTextColor);
     padding: 12px;
     font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.bottomRow {
+    display: flex;
+    gap: 10px;
+}
+
+.bottomRow input {
+    flex: 1;
 }
 
 /* Equal Split Button */
@@ -209,4 +218,8 @@ input:checked + .slider {
 
 input:checked + .slider:before {
     transform: translateX(24px);
+}
+
+.personName {
+    width: 100%;
 }
