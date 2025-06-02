@@ -1,5 +1,6 @@
 <?php
     include 'config.php';
+    require_once 'notifyMail.php';
     session_start();
 
     if (!isset($_SESSION['user_id'])) {
@@ -38,6 +39,16 @@
             $stmtP->execute();
         }
         $stmtP->close();
+
+        foreach ($participants as $p) {
+            $name = $p['name'];
+            $contact = $p['contact'];
+            $amount = $p['amount'];
+
+            if (filter_var($contact, FILTER_VALIDATE_EMAIL)) {
+                sendMail($contact, $name, $amount, $billtitle);
+            }
+        }
     }
 ?> 
 

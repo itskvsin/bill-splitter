@@ -39,20 +39,21 @@ include 'storedPastBills.php';
                         <h3 class="participantHeading">Participants</h3>
                         <div class="divider"></div>
                         <div class="participants">
-                        <?php if(empty($participants)): ?>
-                            <div class="noParticipants">
-                                <p>No participants</p>
-                            </div>
-                            <?php else: ?>
-                            <?php foreach ($b['participants'] as $p): ?>
-                            <div class="participantItem">
-                                <div>Name: <?= htmlspecialchars($p['name']) ?></div>
-                                <div>Contact: <?= htmlspecialchars($p['contact']) ?></div>
-                                <div>Amount: <?= htmlspecialchars($p['amt']) ?></div>
-                            </div>
-                        <?php endforeach; ?>
-                        <?php endif ?>
-                        </div>
+    <?php if(empty($b['participants'])): ?>
+        <div class="noParticipants">
+            <p>No participants</p>
+        </div>
+    <?php else: ?>
+        <?php foreach ($b['participants'] as $p): ?>
+            <div class="participantItem">
+                <div>Name: <?= htmlspecialchars($p['name']) ?></div>
+                <div>Contact: <?= htmlspecialchars($p['contact']) ?></div>
+                <div>Amount: <?= htmlspecialchars($p['amt']) ?></div>
+            </div>
+        <?php endforeach; ?>
+    <?php endif ?>
+</div>
+
                     </div>
                 </div>
             <?php endforeach; ?>
