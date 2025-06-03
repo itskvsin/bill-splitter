@@ -1,7 +1,7 @@
     <?php
     include 'config.php';
     require_once 'notifyMail.php';
-    require_once 'notifySms.php';
+    // require_once 'notifySms.php';
     session_start();
 
     if (!isset($_SESSION['user_id'])) {
@@ -56,7 +56,7 @@
             $amount = $p['amount'];
 
             if (filter_var($contact, FILTER_VALIDATE_EMAIL)) {
-                sendMail($contact, $name, $amount, $billtitle , $fromContact);
+                sendMail($contact, $name, $amount, $billtitle);
             }
         }
     }
