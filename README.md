@@ -25,7 +25,7 @@ Check out the app live here:
 ---
 
 ## 📁 Folder Structure
-/billSplitter
+```/billSplitter
 │
 ├── index.php
 ├── login.php
@@ -47,8 +47,7 @@ Check out the app live here:
 │ └── logo.png
 │
 └── vendor/ # Composer dependencies (e.g. PHPMailer)
-
-
+```
 ---
 
 ## 🛠️ Setup Instructions
