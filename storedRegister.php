@@ -1,22 +1,28 @@
 <?php
-include './config.php';
+include 'config.php'; // Your DB connection
 
-$success = '';
-$error = '';
-
-if (isset($_POST['register']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST['register'])) {
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
     $password = $_POST['password'];
-    
-    $hashedPassword = password_hash($password , PASSWORD_DEFAULT);
+    $contact = trim($_POST['contact']);  // add this if you added contact field
 
-    $stmt = $conn->prepare("INSERT INTO users(name , email , password) VALUES (?,?,?)");
-    $stmt->bind_param("sss" , $name , $email , $hashedPassword);
-    if ($stmt->execute()) {
-        $success = "Registration Successfull Now you can login <a href='./login.php'>Click Here </a>";
+    if (empty($name) || empty($email) || empty($password) || empty($contact)) {
+        $error = "Please fill all fields.";
     } else {
-        $error = "Registration Failed Try Again";
+        // Hash the password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // Prepare insert
+        $stmt = $conn->prepare("INSERT INTO users (name, email, password, contact) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $name, $email, $hashedPassword, $contact);
+
+        if ($stmt->execute()) {
+            $success = "Registration successful.";
+        } else {
+            $error = "Error: " . $conn->error;
+        }
+        $stmt->close();
     }
-} 
+}
 ?>

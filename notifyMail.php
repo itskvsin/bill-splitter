@@ -7,7 +7,7 @@ require 'vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-function sendMail($to, $name, $amount, $billTitle)
+function sendMail($to, $name, $amount, $billTitle , $from)
 {
     $mail = new PHPMailer(true);
     
@@ -20,7 +20,7 @@ function sendMail($to, $name, $amount, $billTitle)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
     
-        $mail->setFrom('kevinsolankissg@gmail.com', 'Bill Splitter Wizard');
+        $mail->setFrom($from, 'Bill Splitter Wizard');
         $mail->addAddress($to, $name);
     
         $mail->isHTML(true);
